@@ -1,0 +1,20 @@
+def inventory_web_apps(info):
+    apps = set()
+    for i in info:
+    	apps.add((i[0],"",None))
+    return list(apps)
+
+def check_web_app(item, params, info):
+    for line in info :
+    	if line[1] != "OK" :
+		if line[2] == "sites-available" :
+	    		return (2, "missing site-avalable for %s" % line[0])
+		if line[2] == "www" :
+			return (2, "missing /var/www/ for %s" % line[0])
+    return (0, "All files are OK")
+
+check_info['web_app'] = (check_web_app,
+			  "Application %s",
+			   0,
+			   inventory_web_apps)
+

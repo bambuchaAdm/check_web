@@ -1,0 +1,3 @@
+Some fast plugin for check_mk.
+
+Monitoring for consitent config in /var/www, /etc/nginx/site-* 

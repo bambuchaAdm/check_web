@@ -1,0 +1,19 @@
+#!/bin/bash
+echo '<<<web_app>>>'
+for i in /etc/nginx/sites-enabled/* ;
+do
+  i=$(basename $i)
+  i=${i##[0-9][0-9][0-9]-}
+  if [ ! -e /etc/nginx/sites-available/$i ]
+  then
+     echo $i MiSSING sites-available
+     continue
+  fi
+  if [ ! -e /var/www/$i ]
+  then
+     echo $i MISSING www
+     continue
+  fi
+  echo $i OK
+done
+
